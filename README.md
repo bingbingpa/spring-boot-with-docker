@@ -8,3 +8,7 @@
   ~~~ shell
   ./gradlew bootBuildImage
   ~~~
+- docker-compose-dev 실행
+  ~~~ shell
+  docker-compose -f docker-compose-dev.yml up -d
+  ~~~

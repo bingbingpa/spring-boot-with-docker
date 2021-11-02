@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    container_name: maria
+    image: mariadb:10.6.4
+    environment:
+      - MARIADB_DATABASE=spring
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
+      - TZ=Asia/Seoul
+      - LANG=C.UTF-8
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+  admin:
+    container_name: app-admin
+    image: admin:0.0.1-SNAPSHOT
+    ports:
+      - "9090:8080"
+    depends_on:
+      - db
+#    command: sh -c "dockerize -wait tcp://db:3306 -timeout 300s -wait-retry-interval 30s /sayhello"
+#  user:
+#    container_name: app-user
+#    image: user:0.0.1-SNAPSHOT
+#    ports:
+#      - "10080:8080"
