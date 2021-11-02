@@ -5,7 +5,7 @@ services:
     container_name: maria
     image: mariadb:10.6.4
     environment:
-      - MARIADB_DATABASE=whatailsyou
+      - MARIADB_DATABASE=spring
       - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
       - TZ=Asia/Seoul
       - LANG=C.UTF-8
