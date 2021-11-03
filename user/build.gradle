@@ -22,3 +22,29 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+//라이브러리 디렉토리 분리
+task moveLib {
+    doLast {
+        def unpackDir = "$buildDir/unpack"
+        copy {
+            from file("${unpackDir}/app/BOOT-INF/lib")
+            into file("${unpackDir}/lib")
+        }
+    }
+}
+
+//jar 파일을 복사해서 unpack/app 디렉토리로 이동
+task unpackJar(type: Copy) {
+    def unpackDir = "$buildDir/unpack"
+
+    delete unpackDir
+    from zipTree(bootJar.getArchiveFile())
+    into "$unpackDir/app"
+
+    finalizedBy moveLib
+}
+
+build {
+    finalizedBy unpackJar
+}
