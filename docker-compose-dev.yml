@@ -14,7 +14,9 @@ services:
       - "3306:3306"
   admin:
     container_name: app-admin
-    image: app-admin
+    build:
+      context: ./admin
+#    image: app-admin
     environment:
       - USER_PROFILE=${USER_PROFILE}
     depends_on:
@@ -23,7 +25,9 @@ services:
       - "9090:8080"
   user:
     container_name: app-user
-    image: app-user
+    build:
+      context: ./user
+#    image: app-user
     environment:
       - USER_PROFILE=${USER_PROFILE}
     depends_on:
