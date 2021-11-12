@@ -12,3 +12,12 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
+  migration:
+    image: flyway/flyway:8.0.4
+    command: -configFiles=/flyway/conf/flyway.config -connectRetries=60 migrate
+    volumes:
+      - ./flyway/migration/main:/flyway/main
+      - ./flyway/migration/seed:/flyway/seed
+      - ./flyway/conf/flyway.conf:/flyway/conf/flyway.config
+    depends_on:
+      - db

@@ -24,3 +24,16 @@
 - ~~~ shell
   docker-compose -f docker-compose-dev.yml down
   ~~~
+  
+### flyway docker 적용해보기
+
+- sql 스크립트 작성
+  - V를 prefix 로 붙이면 버전관리 대상 스크립트이다. migration 이 된 후에 해당 버전보다 낮은 버전의 스크립트가 추가 되어도 실행되지 않는다.
+  - R를 prefix 로 붙이면 migration 이 실행될 때 중복 실행될 수 있는 스크립트이다. 
+    - V를 붙인 스크립트는 내용을 수정하면 checksum 이 다르다는 오류가 발생하지만,
+    R를 붙인 스크립트는 내용이 바뀌지 않으면 다시 실행되지 않지만, 내용이 바뀌면 다시 실행된다.
+- conf 파일 작성하기
+  - db 접속정보와 sql 스크립트 위치를 적어준다. sql 스크립트 위치는 여러개 지정 할 수 있다.
+  - 여기서는 버전관리 대상 스크립트와 seed 대상 스크립트를 분리하였다.
+- docker-compose
+  - migration 대상 스크립트 경로와 conf 파일 위치를 volume 으로 잡아주고 실행!
