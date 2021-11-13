@@ -18,6 +18,6 @@ services:
     volumes:
       - ./flyway/migration/main:/flyway/main
       - ./flyway/migration/seed:/flyway/seed
-      - ./flyway/conf/flyway.conf:/flyway/conf/flyway.config
+      - ./flyway/conf/local.conf:/flyway/conf/flyway.config
     depends_on:
       - db
