@@ -25,7 +25,7 @@ services:
     build: ./admin
     image: app-admin
     environment:
-      - USER_PROFILE=${USER_PROFILE}
+      - USER_PROFILE=${USER_PROFILE_DEVELOP}
     depends_on:
       - db
     ports:
@@ -35,7 +35,7 @@ services:
     build: ./user
     image: app-user
     environment:
-      - USER_PROFILE=${USER_PROFILE}
+      - USER_PROFILE=${USER_PROFILE_DEVELOP}
     depends_on:
       - db
     ports:
